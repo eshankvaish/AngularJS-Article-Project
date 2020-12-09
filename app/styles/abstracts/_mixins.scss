@@ -32,8 +32,8 @@
     }
 }
 
-@mixin normal-font($size, $color, $line-height: 1) {
-    font-weight: bold;
+@mixin normal-font($size: inherit, $color: inherit, $line-height: 1) {
+    font-weight: 400;
     font-size: $size;
     color: $color;
     line-height: $line-height;
@@ -41,7 +41,7 @@
 }
 
 @mixin bold-font($size: inherit, $color: inherit, $line-height: 1) {
-    font-weight: bold;
+    font-weight: 700;
     font-size: $size;
     color: $color;
     line-height: $line-height;

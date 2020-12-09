@@ -1,13 +1,15 @@
 /*Media Queries for Tablets*/
-@include bp-tablet {
-    .center-container {
+.center-container {
+    padding: 0 20px;
+    
+    @include bp-tablet {
         @include center-container($container-width-tablet);
         padding: 0;
     }
-}
-/*Media Queries for Small Desktop*/
-@include bp-desktop {
-    .center-container { 
+    @include bp-desktop {
         @include center-container($container-width-desktop); 
-    } 
+    }
+}
+main {
+    margin-top: 70px;
 }
