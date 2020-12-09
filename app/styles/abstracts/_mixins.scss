@@ -31,3 +31,19 @@
         @content;
     }
 }
+
+@mixin normal-font($size, $color, $line-height: 1) {
+    font-weight: bold;
+    font-size: $size;
+    color: $color;
+    line-height: $line-height;
+    text-decoration: none;
+}
+
+@mixin bold-font($size: inherit, $color: inherit, $line-height: 1) {
+    font-weight: bold;
+    font-size: $size;
+    color: $color;
+    line-height: $line-height;
+    text-decoration: none;
+}
