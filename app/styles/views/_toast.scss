@@ -1,0 +1,18 @@
+.toast {
+    @include bold-font(1.4rem, $icon-color);
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    border-radius: 5px;
+    padding: 15px 25px;
+    max-width: 300px;
+}
+.success {
+    background-color: $success-color;
+}
+.error {
+    background-color: $error-color;
+}
+.info {
+    background-color: $primary-color;
+}

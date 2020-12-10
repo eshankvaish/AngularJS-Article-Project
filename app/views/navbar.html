@@ -9,7 +9,14 @@
     </div>
     <ul class="nav__list" ng-class="toggleActive ? 'nav__list--active' : ''">
         <li class="nav__list--item" ng-repeat="navItem in navItems">
-            <a ng-href="#!{{navItem.path}}" class="nav__list--link" ng-class="isActiveLink(navItem.path) ? 'link-active' : ''">{{navItem.name}}</a>
+            <a
+                ng-href="#!{{navItem.path}}"
+                class="nav__list--link"
+                ng-class="isActiveLink(navItem.path) ? 'link-active' : ''"
+                ng-click="handleToggle()"
+            >
+                {{navItem.name}}
+            </a>
         </li>
     </ul>
 </nav>

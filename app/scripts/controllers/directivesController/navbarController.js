@@ -1,6 +1,6 @@
-export default function navbarController($scope, $location) {
-    // NavItems
-    $scope.navItems = [
+export default function navbarController($scope, $location, $rootScope) {
+    // When the user is logged Out
+    const loggedOutNavItems = [
         {
             name: 'Home',
             path: '/',
@@ -18,11 +18,25 @@ export default function navbarController($scope, $location) {
             path: '/signup',
         },
         {
-            // TODO: Add Logout during Authentication Part
             name: 'Signin',
             path: '/signin',
         },
     ];
+    // When the user is loggedIn
+    const loggedInNavItems = [...loggedOutNavItems.filter(function(navItem) {
+        return (navItem.name !== 'Signup' && navItem.name !== 'Signin')
+    }), {
+        name: 'Logout',
+        path: '/logout',
+    }];
+    // Watch for changes in isLoggedIn variable
+    $scope.$watch(
+        function() {
+            return $rootScope.isLoggedIn;
+        }, function() {
+            $scope.navItems = $rootScope.isLoggedIn ? loggedInNavItems : loggedOutNavItems;
+        }
+    );
     $scope.toggleActive = false;
 
     $scope.handleToggle = function() {
