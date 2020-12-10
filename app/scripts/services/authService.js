@@ -34,6 +34,34 @@ export default function authService($http, $state, $rootScope, Toast, TOAST_CONS
                 }
             })
             .catch(function() {
+                Toast.setToast(TOAST_CONSTANTS.ERROR, 'Something went wrong Please Try Again');
+            });
+    };
+
+    auth.login = function(userData) {
+        $http
+            .get(`${API_CONSTANTS.USERS_API}?username=${userData.username}`)
+            .then(function({data}) {
+                if (data.length === 0) {
+                    // User Doesn't Exist
+                    Toast.setToast(TOAST_CONSTANTS.ERROR, 'Account does not exist, Please try again');
+                } else {
+                    // Validate user
+                    if (data[0].password === userData.password) {
+                        $rootScope.isLoggedIn = true;
+                        Toast.setToast(TOAST_CONSTANTS.SUCCESS, 'Welcome Back! Login Successful!');
+                        // Update Local Storage
+                        modifyLocalStorageItem('set', 'user', {
+                            username: userData.username,
+                            email: data[0].email,
+                        });
+                        $state.go('Home');
+                    } else {
+                        Toast.setToast(TOAST_CONSTANTS.ERROR, 'Please enter correct password');
+                    }
+                }
+            })
+            .catch(function() {
                 Toast.setToast(TOAST_CONSTANTS.ERROR, 'Something went wrong, Try Again');
             });
     };

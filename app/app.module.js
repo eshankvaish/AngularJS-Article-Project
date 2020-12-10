@@ -6,6 +6,7 @@ import routes from './app.routes';
 import { API_CONSTANTS, TOAST_CONSTANTS } from './constants';
 import navbarController from './scripts/controllers/directivesController/navbarController';
 import logoutController from './scripts/controllers/logoutController';
+import siginController from './scripts/controllers/signinController';
 import signupController from './scripts/controllers/signupController';
 import navbarDirective from './scripts/directives/navbar';
 import toastDirective from './scripts/directives/toast';
@@ -26,6 +27,7 @@ app.factory('Toast', ['$timeout', 'TOAST_CONSTANTS', toastService]);
 app.factory('Auth', ['$http', '$state', '$rootScope', 'Toast', 'TOAST_CONSTANTS', 'API_CONSTANTS', authService]);
 app.controller('navbarController', ['$scope', '$location', '$rootScope', navbarController]);
 app.controller('signupController', ['$scope', 'Auth', signupController]);
+app.controller('siginController', ['$scope', 'Auth', siginController]);
 app.controller('logoutController', logoutController);
 app.directive('navbar', [navbarDirective]);
 app.directive('toast', ['Toast', toastDirective]);
@@ -40,10 +42,9 @@ app.run([
         $transitions.onSuccess({}, function($transition) {
             if ($transition.$to().self.requireAuth && !$rootScope.isLoggedIn) {
                 Toast.setToast(TOAST_CONSTANTS.INFO, 'Please login to continue!');
-                // Change to Signin during Signin part
-                $state.go('Signup');
+                $state.go('Signin');
             } else if ($transition.$to().self.onlyNoAuth && $rootScope.isLoggedIn) {
-                Toast.setToast(TOAST_CONSTANTS.INFO, 'You are already logged in');
+                Toast.setToast(TOAST_CONSTANTS.INFO, 'You are Logged In');
                 $state.go('Home');
             }
         }

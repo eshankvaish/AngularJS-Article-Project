@@ -26,8 +26,8 @@ export default function routes($stateProvider, Auth) {
         })
         .state('Signin', {
             url: '/signin',
-            templateUrl: 'app/views/signin.html',
-            //controller: 'signinController',
+            templateUrl: 'app/views/signup.html',
+            controller: 'siginController',
             onlyNoAuth: true,
         })
         .state('logout', {
