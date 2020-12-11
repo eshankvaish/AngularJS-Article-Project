@@ -1,4 +1,5 @@
 export default function signupController($scope, Auth) {
+    // Variable for inputFields
     $scope.inputFields = {
         username: {
             id: 'username',
@@ -33,15 +34,20 @@ export default function signupController($scope, Auth) {
             value: '',
         },
     };
+    // For heading
     $scope.heading = 'Sign Up';
+    // Passwords Match Check
     $scope.passwordsMatch = true;
     $scope.errorMessage = "Passwords don't match. Try Again.";
+
     $scope.handleSubmit = function() {
         const { username, email, password, confirmPassword } = $scope.inputFields;
+        // Check if passwords match
         if (password.value !== confirmPassword.value) {
             $scope.passwordsMatch = false;
         } else {
             $scope.passwordsMatch = true;
+            // Register User
             Auth.registerUser({
                 username: username.value,
                 email: email.value,
