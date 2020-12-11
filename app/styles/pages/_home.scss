@@ -1,0 +1,13 @@
+/*Media Queries for Tablets*/
+@include bp-tablet {
+    .center-container {
+        @include center-container($container-width-tablet);
+        padding: 0;
+    }
+}
+/*Media Queries for Small Desktop*/
+@include bp-desktop {
+    .center-container { 
+        @include center-container($container-width-desktop); 
+    } 
+}
