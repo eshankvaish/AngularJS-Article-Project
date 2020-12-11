@@ -2,16 +2,16 @@ import angular from 'angular';
 import uirouter from 'angular-ui-router';
 import uiRouterStateEvents from 'ng-ui-router-state-events';
 
-import routes from './app.routes';
+import { routes, authRoutes } from './app.config';
 import { API_CONSTANTS, TOAST_CONSTANTS } from './constants';
-import navbarController from './scripts/controllers/directivesController/navbarController';
-import logoutController from './scripts/controllers/logoutController';
-import siginController from './scripts/controllers/signinController';
-import signupController from './scripts/controllers/signupController';
-import navbarDirective from './scripts/directives/navbar';
-import toastDirective from './scripts/directives/toast';
-import authService from './scripts/services/authService';
-import toastService from './scripts/services/toastService';
+import logoutController from './modules/logout/logoutController';
+import navbarController from './modules/navbar/navbarController';
+import signupController from './modules/signup/signupController';
+import toastController from './modules/toast/toastController';
+import navbarDirective from './modules/navbar/directive/navbar';
+import toastDirective from './modules/toast/directive/toast';
+import authService from './shared/services/authService';
+import toastService from './shared/services/toastService';
 import './styles/index.scss';
 
 const app = angular.module('articleApp', [
@@ -25,7 +25,8 @@ app.constant('API_CONSTANTS', API_CONSTANTS);
 app.constant('TOAST_CONSTANTS', TOAST_CONSTANTS);
 app.factory('Toast', ['$timeout', 'TOAST_CONSTANTS', toastService]);
 app.factory('Auth', ['$http', '$state', '$rootScope', 'Toast', 'TOAST_CONSTANTS', 'API_CONSTANTS', authService]);
-app.controller('navbarController', ['$scope', '$location', '$rootScope', navbarController]);
+app.controller('toastController', ['$scope', 'Toast', toastController])
+app.controller('navbarController', ['$scope', '$state', '$rootScope', navbarController]);
 app.controller('signupController', ['$scope', 'Auth', signupController]);
 app.controller('siginController', ['$scope', 'Auth', siginController]);
 app.controller('logoutController', logoutController);
@@ -38,15 +39,5 @@ app.run([
     '$state',
     'Toast',
     'TOAST_CONSTANTS',
-    function($rootScope, $transitions, $state, Toast, TOAST_CONSTANTS) {
-        $transitions.onSuccess({}, function($transition) {
-            if ($transition.$to().self.requireAuth && !$rootScope.isLoggedIn) {
-                Toast.setToast(TOAST_CONSTANTS.INFO, 'Please login to continue!');
-                $state.go('Signin');
-            } else if ($transition.$to().self.onlyNoAuth && $rootScope.isLoggedIn) {
-                Toast.setToast(TOAST_CONSTANTS.INFO, 'You are Logged In');
-                $state.go('Home');
-            }
-        }
-    );
-}])
+    authRoutes,
+]);

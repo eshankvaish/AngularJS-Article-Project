@@ -1,29 +1,29 @@
 <section class="justify-container">
     <!-- This view can be reused for signup and login -->
     <h1 class="heading">{{ heading }}</h1>
-    <div class="form-error" ng-show="!passwordsMatch">
+    <div class="form-error" data-ng-if="!passwordsMatch">
         {{errorMessage}}
     </div>
-    <form name="signupForm" ng-submit="handleSubmit()">
-        <div class="input-field" ng-repeat="inputField in inputFields">
+    <form name="signupForm" data-ng-submit="handleSubmit()">
+        <div class="input-field" data-ng-repeat="inputField in inputFields">
             <label for="{{inputField.id}}">{{inputField.label}}</label>
             <input
                 type="{{inputField.type}}"
                 aria-label="{{inputField.label}}"
                 name="{{inputField.name}}"
                 placeholder="{{inputField.placeholder}}"
-                ng-required="true"
-                ng-model="inputField.value"
+                data-ng-required="true"
+                data-ng-model="inputField.value"
             />
             <div
                 class="text-right color-red"
-                ng-show="signupForm[inputField.name].$touched && signupForm[inputField.name].$invalid"
+                data-ng-if="signupForm[inputField.name].$touched && signupForm[inputField.name].$invalid"
             >
                 Please enter valid value!
             </div>
         </div>
         <div class="text-right">
-            <button type="Submit" ng-disabled="signupForm.$invalid">Submit</button>
+            <button type="Submit" data-ng-disabled="signupForm.$invalid">Submit</button>
         </div>
     </form>
 </section>
