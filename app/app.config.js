@@ -29,8 +29,8 @@ export function routes($stateProvider) {
         })
         .state('Signin', {
             url: '/signin',
-            //templateUrl: 'app/modules/signup/signup.html',
-            //controller: 'signinController',
+            templateUrl: 'app/modules/signup/signup.html',
+            controller: 'signinController',
             onlyNoAuth: true,
         })
         .state('Logout', {
@@ -46,11 +46,10 @@ export function routes($stateProvider) {
 export function authRoutes($rootScope, $transitions, $state, Toast, TOAST_CONSTANTS) {
     $transitions.onSuccess({}, function($transition) {
         if ($transition.$to().self.requireAuth && !$rootScope.isLoggedIn) {
-            Toast.setToast(TOAST_CONSTANTS.INFO, 'Please login to continue!');
-            // Change to Signin during Signin part
-            $state.go('Signup');
+            Toast.setToast(TOAST_CONSTANTS.INFO, 'Please Login to continue!');
+            $state.go('Signin');
         } else if ($transition.$to().self.onlyNoAuth && $rootScope.isLoggedIn) {
-            Toast.setToast(TOAST_CONSTANTS.INFO, 'You are already logged in');
+            Toast.setToast(TOAST_CONSTANTS.INFO, 'You are Logged In');
             $state.go('Home');
         }
     });

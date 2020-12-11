@@ -7,6 +7,7 @@ import { API_CONSTANTS, TOAST_CONSTANTS } from './constants';
 import logoutController from './modules/logout/logoutController';
 import navbarController from './modules/navbar/navbarController';
 import signupController from './modules/signup/signupController';
+import signinController from './modules/signin/signinController';
 import toastController from './modules/toast/toastController';
 import navbarDirective from './modules/navbar/directive/navbar';
 import toastDirective from './modules/toast/directive/toast';
@@ -28,7 +29,7 @@ app.factory('Auth', ['$http', '$state', '$rootScope', 'Toast', 'TOAST_CONSTANTS'
 app.controller('toastController', ['$scope', 'Toast', toastController])
 app.controller('navbarController', ['$scope', '$state', '$rootScope', navbarController]);
 app.controller('signupController', ['$scope', 'Auth', signupController]);
-app.controller('siginController', ['$scope', 'Auth', siginController]);
+app.controller('signinController', ['$scope', 'Auth', signinController]);
 app.controller('logoutController', logoutController);
 app.directive('navbar', [navbarDirective]);
 app.directive('toast', ['Toast', toastDirective]);
