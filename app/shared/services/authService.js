@@ -93,6 +93,17 @@ export default function authService($http, $state, $rootScope, Toast, TOAST_CONS
         Toast.setToast(TOAST_CONSTANTS.INFO, 'You have been Logged Out Successfully')
         $state.go('Signin')
     };
+    // Get user details using Username
+    auth.getUserDetails = function(username) {
+        return $http.get(`${API_CONSTANTS.USERS_API}?username=${username}`);
+    };
+    // Update User Password
+    auth.updateUserDetails = function(userData, newUserData) {
+        return $http.put(`${API_CONSTANTS.USERS_API}/${userData.id}`, {
+            ...userData,
+            ...newUserData,
+        });
+    };
 
     return auth;
 };

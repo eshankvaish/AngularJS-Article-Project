@@ -10,6 +10,7 @@ import logoutController from './modules/logout/logoutController';
 import navbarController from './modules/navbar/navbarController';
 import signupController from './modules/signup/signupController';
 import signinController from './modules/signin/signinController';
+import profileController from './modules/profile/profileController';
 import toastController from './modules/toast/toastController';
 import navbarDirective from './modules/navbar/directive/navbar';
 import toastDirective from './modules/toast/directive/toast';
@@ -37,6 +38,7 @@ app.controller('signinController', ['$scope', 'Auth', signinController]);
 app.controller('logoutController', logoutController);
 app.controller('createArticleController', ['$scope', '$state', 'Article', createArticleController]);
 app.controller('articleDetailController', ['$scope', '$state', '$stateParams', 'Article', 'API_CONSTANTS', '$rootScope', articleDetailController]);
+app.controller('profileController', ['$scope', '$rootScope', 'Auth', 'Toast', 'TOAST_CONSTANTS', 'API_CONSTANTS', profileController]);
 app.directive('navbar', [navbarDirective]);
 app.directive('toast', ['Toast', toastDirective]);
 

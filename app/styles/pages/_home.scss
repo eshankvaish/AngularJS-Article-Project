@@ -63,6 +63,14 @@ button {
     padding-top: 30px;
 }
 .heading {
-    @include bold-font(5rem, $dark-primary-color);
+    @include bold-font(4rem, $dark-primary-color);
     margin-bottom: 20px;
+
+    @include bp-tablet {
+        @include bold-font(5rem, $dark-primary-color);
+    }
+}
+img {
+    max-height: 100%;
+    max-width: 100%;
 }

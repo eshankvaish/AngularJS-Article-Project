@@ -17,7 +17,7 @@ export function routes($stateProvider) {
         .state('Profile', {
             url: '/profile',
             templateUrl: 'app/modules/profile/profile.html',
-            //controller: 'profileController',
+            controller: 'profileController',
             requireAuth: true,
         })
         .state('Signup', {
