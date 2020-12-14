@@ -7,3 +7,13 @@
 .color-red {
     color: $error-color;
 }
+.btn-danger {
+    background-color: $error-color;
+
+    &:hover {
+        background-color: $dark-error-color;
+    }
+}
+.w-100 {
+    width: 100%;
+}

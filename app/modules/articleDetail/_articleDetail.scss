@@ -1,0 +1,25 @@
+.article {
+    &__heading {
+        @include bold-font(4rem, $dark-primary-color);
+        margin-bottom: 15px;
+    }
+    &__author {
+        @include normal-font(1.2rem, $light-primary-color);
+        border-bottom: 1px solid $dark-background-color;
+        width: 100%;
+        text-align: right;
+        padding-bottom: 5px;
+    }
+    &__desc {
+        @include normal-font(1.4rem, inherit, 2.5rem);
+        padding: 15px 0;
+    }
+    &__tag {
+        @include normal-font(1.4rem, $icon-color);
+        display: inline-block;
+        background-color: $dark-background-color;
+        padding: 5px 10px;
+        margin: 0 5px;
+        border-radius: 5px;
+    }
+}

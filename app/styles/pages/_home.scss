@@ -26,18 +26,23 @@ input {
     border: 1px solid $primary-text-color;
     border-radius: 4px;
     outline: none;
+    width: 100%;
 
     &:focus {
         border-color: $dark-primary-color;
     }
 }
+textarea {
+    @extend input;
+    resize: vertical;
+    min-height: 200px;
+}
 .ng-touched.ng-invalid {
     border-color: $error-color;
 }
 button {
+    @include bold-font(1.4rem, $icon-color);
     background-color: $light-primary-color;
-    color: $icon-color;
-    font-weight: bold;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;

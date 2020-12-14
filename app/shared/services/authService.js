@@ -12,8 +12,15 @@ import modifyLocalStorageItem from "../../utils/modifyLocalStorage";
 export default function authService($http, $state, $rootScope, Toast, TOAST_CONSTANTS, API_CONSTANTS) {
     let auth = {};
     // Check if user is already logged in
-    $rootScope.user = modifyLocalStorageItem('get', 'user');
-    $rootScope.isLoggedIn = $rootScope.user ? true : false;
+    auth.getUser = function() {
+        $rootScope.user = modifyLocalStorageItem('get', 'user');
+        $rootScope.isLoggedIn = $rootScope.user ? true : false;
+    };
+
+    auth.setUser = function(user) {
+        modifyLocalStorageItem('set', 'user', user);
+        $rootScope.user = user;
+    };
 
     auth.createAccount = function(userData) {
         $http
@@ -22,7 +29,7 @@ export default function authService($http, $state, $rootScope, Toast, TOAST_CONS
                 $rootScope.isLoggedIn = true;
                 Toast.setToast(TOAST_CONSTANTS.SUCCESS, 'Congrats, Signup Successful!');
                 // Update Local Storage
-                modifyLocalStorageItem('set', 'user', {
+                auth.setUser({
                     username: userData.username,
                     email: userData.email,
                 });
@@ -64,7 +71,7 @@ export default function authService($http, $state, $rootScope, Toast, TOAST_CONS
                         $rootScope.isLoggedIn = true;
                         Toast.setToast(TOAST_CONSTANTS.SUCCESS, 'Welcome Back! Login Successful!');
                         // Update Local Storage
-                        modifyLocalStorageItem('set', 'user', {
+                        auth.setUser({
                             username: userData.username,
                             email: data[0].email,
                         });

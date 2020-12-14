@@ -11,7 +11,7 @@ export function routes($stateProvider) {
         .state('Create Article', {
             url: '/create-article',
             templateUrl: 'app/modules/createArticle/createArticle.html',
-            //controller: 'profileController',
+            controller: 'createArticleController',
             requireAuth: true,
         })
         .state('Profile', {
@@ -37,13 +37,19 @@ export function routes($stateProvider) {
             url: '/logout',
             controller: 'logoutController',
         })
+        .state('ArticleDetail', {
+            url: '/article-detail/:articleId',
+            templateUrl: 'app/modules/articleDetail/articleDetail.html',
+            controller: 'articleDetailController',
+        })
         .state('otherwise', {
             url: '*path',
             templateUrl: 'app/views/404.html',
         });
 };
 
-export function authRoutes($rootScope, $transitions, $state, Toast, TOAST_CONSTANTS) {
+export function authRoutes($rootScope, $transitions, $state, Toast, TOAST_CONSTANTS, Auth) {
+    Auth.getUser();
     $transitions.onSuccess({}, function($transition) {
         if ($transition.$to().self.requireAuth && !$rootScope.isLoggedIn) {
             Toast.setToast(TOAST_CONSTANTS.INFO, 'Please Login to continue!');
