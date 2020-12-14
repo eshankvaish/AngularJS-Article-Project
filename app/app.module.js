@@ -36,7 +36,7 @@ app.controller('signupController', ['$scope', 'Auth', signupController]);
 app.controller('signinController', ['$scope', 'Auth', signinController]);
 app.controller('logoutController', logoutController);
 app.controller('createArticleController', ['$scope', '$state', 'Article', createArticleController]);
-app.controller('articleDetailController', ['$scope', '$stateParams', 'Article', 'API_CONSTANTS', '$rootScope', articleDetailController]);
+app.controller('articleDetailController', ['$scope', '$state', '$stateParams', 'Article', 'API_CONSTANTS', '$rootScope', articleDetailController]);
 app.directive('navbar', [navbarDirective]);
 app.directive('toast', ['Toast', toastDirective]);
 

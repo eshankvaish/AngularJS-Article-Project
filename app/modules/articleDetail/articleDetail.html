@@ -1,5 +1,7 @@
-<section class="justify-container form-error" data-ng-if="article.error">
-    {{article.error}}
+<section class="justify-container" data-ng-if="article.error">
+    <div class="form-error">
+        {{article.error}}
+    </div>
 </section>
 <section class="justify-container article" data-ng-if="!article.error">
     <h1 class="article__heading">{{article.title}}</h1>

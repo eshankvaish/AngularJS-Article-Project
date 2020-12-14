@@ -1,4 +1,4 @@
-export default function articleDetailController($scope, $stateParams, Article, API_CONSTANTS, $rootScope) {
+export default function articleDetailController($scope, $state, $stateParams, Article, API_CONSTANTS, $rootScope) {
     $scope.article = {};
     Article.getArticle($stateParams.articleId)
         .then(function({data}) {
@@ -8,7 +8,10 @@ export default function articleDetailController($scope, $stateParams, Article, A
                 $scope.isAuthor = true;
             }
         })
-        .catch(function() {
+        .catch(function(err) {
+            if (err.status === 404) {
+                $state.go('404');
+            }
             $scope.article.error = API_CONSTANTS.DEFAULT_ERROR_MESSAGE;
         });
 

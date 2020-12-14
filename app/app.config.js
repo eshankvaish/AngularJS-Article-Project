@@ -42,6 +42,10 @@ export function routes($stateProvider) {
             templateUrl: 'app/modules/articleDetail/articleDetail.html',
             controller: 'articleDetailController',
         })
+        .state('404', {
+            url: '/404',
+            templateUrl: 'app/views/404.html',
+        })
         .state('otherwise', {
             url: '*path',
             templateUrl: 'app/views/404.html',
