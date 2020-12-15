@@ -1,4 +1,4 @@
-export default function homeController($scope, $filter, Article, Toast, TOAST_CONSTANTS) {
+export default function homeController($scope, $state, $stateParams, $filter, Article, Toast, TOAST_CONSTANTS) {
     const MAX_ARTICLES_PER_PAGE = 10;
 
     // Function to update articles and currentPage according to Page Number
@@ -12,6 +12,7 @@ export default function homeController($scope, $filter, Article, Toast, TOAST_CO
     let allArticles; // To store all articles
     $scope.searchValue = '';
     $scope.currentPage = 1; // current page in Pagination
+    $scope.currentTag = $stateParams.tag;
 
     // Custom Function for Range
     $scope.range = function(min, max) {
@@ -25,9 +26,12 @@ export default function homeController($scope, $filter, Article, Toast, TOAST_CO
     // Fetch Articles
     Article.getArticles()
         .then(function({data}) {
-            allArticles = data; // Store all articles
+            // Store all articles and filter according to tag if any
+            allArticles = $filter('filter')(data, {
+                tags: $stateParams.tag,
+            });
             updateArticles(); // Add articles for first page
-            $scope.totalPages = parseInt(data.length / MAX_ARTICLES_PER_PAGE);
+            $scope.totalPages = parseInt(allArticles.length / MAX_ARTICLES_PER_PAGE) + 1;
         })
         .catch(function() {
             Toast.setToast(TOAST_CONSTANTS.ERROR, TOAST_CONSTANTS.DEFAULT_ERROR_MESSAGE);

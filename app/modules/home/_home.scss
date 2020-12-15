@@ -1,5 +1,5 @@
 .article-container {
-    @include flexbox(row, space-evenly);
+    @include flexbox(column, flex-start, center);
     width: 100%;
 
     @include bp-tablet {
@@ -47,4 +47,14 @@
 }
 .active-page {
     background-color: $dark-background-color;
+}
+.home-heading {
+    @include bold-font(2.4rem, $dark-primary-color);
+    margin-bottom: 15px;
+
+    &__tag {
+        padding: 8px;
+        background: $background-color;
+        border-radius: 8px;
+    }
 }

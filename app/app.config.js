@@ -5,6 +5,11 @@ export function routes($stateProvider) {
             url: '/',
             templateUrl: 'app/modules/home/home.html',
             controller: 'homeController',
+            params: {
+                tag: {
+                    value: '',
+                },
+            },
             // Login Required
             requireAuth: true,
         })

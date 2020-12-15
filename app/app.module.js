@@ -39,7 +39,7 @@ app.controller('signinController', ['$scope', 'Auth', signinController]);
 app.controller('createArticleController', ['$scope', '$state', 'Article', createArticleController]);
 app.controller('articleDetailController', ['$scope', '$state', '$stateParams', 'Article', 'API_CONSTANTS', '$rootScope', articleDetailController]);
 app.controller('profileController', ['$scope', '$rootScope', 'Auth', 'Toast', 'TOAST_CONSTANTS', 'API_CONSTANTS', profileController]);
-app.controller('homeController', ['$scope', '$filter', 'Article', homeController]);
+app.controller('homeController', ['$scope', '$state', '$stateParams', '$filter', 'Article', homeController]);
 app.directive('navbar', [navbarDirective]);
 app.directive('toast', ['Toast', toastDirective]);
 app.directive('passwordsMatch', [passwordsMatchDirective]);
