@@ -6,6 +6,7 @@ import { routes, authRoutes } from './app.config';
 import { API_CONSTANTS, TOAST_CONSTANTS } from './constants';
 import articleDetailController from './modules/articleDetail/articleDetailController';
 import createArticleController from './modules/createArticle/createArticleController';
+import homeController from './modules/home/homeController';
 import logoutController from './modules/logout/logoutController';
 import navbarController from './modules/navbar/navbarController';
 import signupController from './modules/signup/signupController';
@@ -39,6 +40,7 @@ app.controller('logoutController', logoutController);
 app.controller('createArticleController', ['$scope', '$state', 'Article', createArticleController]);
 app.controller('articleDetailController', ['$scope', '$state', '$stateParams', 'Article', 'API_CONSTANTS', '$rootScope', articleDetailController]);
 app.controller('profileController', ['$scope', '$rootScope', 'Auth', 'Toast', 'TOAST_CONSTANTS', 'API_CONSTANTS', profileController]);
+app.controller('homeController', ['$scope', '$filter', 'Article', homeController]);
 app.directive('navbar', [navbarDirective]);
 app.directive('toast', ['Toast', toastDirective]);
 

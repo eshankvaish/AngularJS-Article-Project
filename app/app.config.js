@@ -4,7 +4,7 @@ export function routes($stateProvider) {
         .state('Home', {
             url: '/',
             templateUrl: 'app/modules/home/home.html',
-            controller: 'navbarController',
+            controller: 'homeController',
             // Login Required
             requireAuth: true,
         })

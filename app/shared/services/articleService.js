@@ -32,6 +32,11 @@ export default function articleService($http, $state, $rootScope, Toast, TOAST_C
         return $http.get(`${API_CONSTANTS.ARTICLES_API}/${articleId}`);
     }
 
+    // Get All Articles
+    article.getArticles = function() {
+        return $http.get(`${API_CONSTANTS.ARTICLES_API}?_sort=id&_order=desc`);
+    }
+
     article.deleteArticle = function(articleId) {
         $http.delete(`${API_CONSTANTS.ARTICLES_API}/${articleId}`)
             .then(function() {
