@@ -1,0 +1,9 @@
+.input-field {
+    margin: 15px 0;
+}
+.form-error {
+    @include bold-font(1.4rem, $icon-color);
+    background-color: $error-color;
+    padding: 10px 15px;
+    border-radius: 5px;
+}

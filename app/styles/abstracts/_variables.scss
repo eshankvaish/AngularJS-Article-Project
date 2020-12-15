@@ -1,5 +1,6 @@
 $base-font-size: 62.5%;
 $fonts: '/app/assets/fonts';
+$icons: '/app/assets/icons';
 
 //Colors
 $dark-primary-color: #1976d2;
@@ -7,13 +8,13 @@ $light-primary-color: #448aff;
 $primary-color: #2196f3;
 $icon-color: #ffffff;
 $primary-text-color: #212121;
-$seconday-text-color: #757575;
+$secondary-text-color: #757575;
 $divider-color: #bdbdbd;
-$error-color: red;
-$background-color: lightblue;
+$error-color: #ff0000;
+$dark-error-color: #8B0000;
+$background-color: #add8e6;
 $dark-background-color: #0099cc;
-$success-color: green;
-$disabled-color: rgba(0, 128, 255, 0.4);
+$success-color: #00ff00;
 
 //Container Width
 $container-width-tablet: 708px;

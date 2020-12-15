@@ -1,0 +1,20 @@
+<section class="justify-container" data-ng-if="article.error">
+    <div class="form-error">
+        {{article.error}}
+    </div>
+</section>
+<section class="justify-container article" data-ng-if="!article.error">
+    <h1 class="article__heading">{{article.title}}</h1>
+    <a class="article__author" data-ui-sref="{{Profile}}">
+        By {{article.author}}
+    </a>
+    <p class="article__desc">
+        {{article.description}}
+    </p>
+    <ul data-ng-if="article.tags">
+        <li class="article__tag" data-ng-repeat="tag in article.tags">{{tag}}</li>
+    </ul>
+    <div class="text-right w-100" data-ng-if="isAuthor">
+        <button type="submit" class="btn-danger" data-ng-click="handleDelete()">Delete</button>
+    </div>
+</section>

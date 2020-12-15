@@ -1,0 +1,7 @@
+.article-form {
+    width: 100%;
+
+    @include bp-tablet {
+        width: 60%;
+    }
+}
