@@ -12,7 +12,7 @@
         {{article.description}}
     </p>
     <ul data-ng-if="article.tags">
-        <li class="article__tag" data-ng-repeat="tag in article.tags">
+        <li class="article__tag" data-ng-repeat="tag in article.tags track by $index">
             <a data-ui-sref="Home({tag: tag})">{{tag}}</a>
         </li>
     </ul>

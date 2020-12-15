@@ -43,7 +43,7 @@
             </div>
             <p class="article-list__description">{{article.description.slice(0,400)}}</p>
             <ul data-ng-if="article.tags">
-                <li class="article-list__tags" data-ng-repeat="tag in article.tags">
+                <li class="article-list__tags" data-ng-repeat="tag in article.tags track by $index">
                     <a data-ui-sref="Home({tag: tag})">{{tag}}</a>
                 </li>
             </ul>
