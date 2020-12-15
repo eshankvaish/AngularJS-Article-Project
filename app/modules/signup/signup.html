@@ -19,7 +19,8 @@
                 Please enter valid value!
             </div>
         </div>
-        <div class="input-field">
+        <!-- Confirm Password Field only on Signup Page -->
+        <div class="input-field" data-ng-if="showConfirmPassword">
             <label for="confirm-password">Confirm Password</label>
             <input
                 type="password"
