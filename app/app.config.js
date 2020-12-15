@@ -33,10 +33,6 @@ export function routes($stateProvider) {
             controller: 'signinController',
             onlyNoAuth: true,
         })
-        .state('Logout', {
-            url: '/logout',
-            controller: 'logoutController',
-        })
         .state('ArticleDetail', {
             url: '/article-detail/:articleId',
             templateUrl: 'app/modules/articleDetail/articleDetail.html',

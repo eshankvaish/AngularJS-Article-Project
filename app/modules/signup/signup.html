@@ -1,9 +1,6 @@
 <section class="justify-container">
     <!-- This view can be reused for signup and login -->
     <h1 class="heading">{{ heading }}</h1>
-    <div class="form-error" data-ng-if="!passwordsMatch">
-        {{errorMessage}}
-    </div>
     <form name="signupForm" data-ng-submit="handleSubmit()">
         <div class="input-field" data-ng-repeat="inputField in inputFields">
             <label for="{{inputField.id}}">{{inputField.label}}</label>
@@ -20,6 +17,25 @@
                 data-ng-if="signupForm[inputField.name].$touched && signupForm[inputField.name].$invalid"
             >
                 Please enter valid value!
+            </div>
+        </div>
+        <div class="input-field">
+            <label for="confirm-password">Confirm Password</label>
+            <input
+                type="password"
+                aria-label="Confirm Password"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                data-ng-required="true"
+                data-ng-model="confirmPassword"
+                passwords-match
+                match-target="inputFields.password.value"
+            />
+            <div
+                class="text-right color-red"
+                data-ng-if="signupForm.confirmPassword.$touched && signupForm.confirmPassword.$error.match"
+            >
+                Passwords don't match!
             </div>
         </div>
         <div class="text-right">

@@ -25,34 +25,17 @@ export default function signupController($scope, Auth) {
             placeholder: 'Enter Password',
             value: '',
         },
-        confirmPassword: {
-            id: 'confirm-password',
-            name: 'confirm-password',
-            label: 'Confirm Password',
-            type: 'password',
-            placeholder: 'Enter Password Again',
-            value: '',
-        },
     };
     // For heading
     $scope.heading = 'Sign Up';
-    // Passwords Match Check
-    $scope.passwordsMatch = true;
-    $scope.errorMessage = "Passwords don't match. Try Again.";
 
     $scope.handleSubmit = function() {
         const { username, email, password, confirmPassword } = $scope.inputFields;
-        // Check if passwords match
-        if (password.value !== confirmPassword.value) {
-            $scope.passwordsMatch = false;
-        } else {
-            $scope.passwordsMatch = true;
-            // Register User
-            Auth.registerUser({
-                username: username.value,
-                email: email.value,
-                password: password.value,
-            });
-        }
+        // Register User
+        Auth.registerUser({
+            username: username.value,
+            email: email.value,
+            password: password.value,
+        });
     }
 }

@@ -2,7 +2,6 @@ export default function profileController($scope, $rootScope, Auth, Toast, TOAST
     // User Details
     $scope.user = $rootScope.user;
     $scope.showPasswordForm = false; // Initally False
-    $scope.passwordsMatch = true;
     $scope.passwordError = '';
     // Input Fields
     $scope.inputFields = {
@@ -22,14 +21,6 @@ export default function profileController($scope, $rootScope, Auth, Toast, TOAST
             placeholder: 'Enter New Password',
             value: '',
         },
-        confirmPassword: {
-            id: 'password',
-            name: 'confirmPassword',
-            label: 'Confirm Password',
-            type: 'password',
-            placeholder: 'Confirm Password',
-            value: '',
-        },
     };
     // Show Password Form on button click
     $scope.handleClick = function() {
@@ -40,40 +31,31 @@ export default function profileController($scope, $rootScope, Auth, Toast, TOAST
         let password = {
             currentPassword: $scope.inputFields.currentPassword.value,
             newPassword: $scope.inputFields.newPassword.value,
-            confirmPassword: $scope.inputFields.confirmPassword.value,
         };
-        // match passwords
-        if (password.newPassword === password.confirmPassword) {
-            $scope.passwordsMatch = true;
-            $scope.passwordError = '';
-            Auth.getUserDetails($scope.user.username)
-                .then(function({data}) {
-                    // check for current password
-                    if (data[0].password === password.currentPassword) {
-                        Auth.updateUserDetails(data[0], {
-                            password: password.newPassword,
+        $scope.passwordError = '';
+        Auth.getUserDetails($scope.user.username)
+            .then(function({data}) {
+                // check for current password
+                if (data[0].password === password.currentPassword) {
+                    Auth.updateUserDetails(data[0], {
+                        password: password.newPassword,
+                    })
+                        .then(function() {
+                            // Success
+                            Toast.setToast(TOAST_CONSTANTS.SUCCESS, 'Password Changed Successfully');
+                            $scope.showPasswordForm = false;
                         })
-                            .then(function() {
-                                // Success
-                                Toast.setToast(TOAST_CONSTANTS.SUCCESS, 'Password Changed Successfully');
-                                $scope.showPasswordForm = false;
-                            })
-                            .catch(function() {
-                                Toast.setToast(TOAST_CONSTANTS.ERROR, API_CONSTANTS.DEFAULT_ERROR_MESSAGE);
-                                $scope.showPasswordForm = true;
-                            });
-                    } else {
-                        $scope.passwordsMatch = false;
-                        $scope.passwordError = 'Invalid Current Password';
-                    }
-                })
-                .catch(function() {
-                    Toast.setToast(TOAST_CONSTANTS.ERROR, API_CONSTANTS.DEFAULT_ERROR_MESSAGE);
-                    $scope.showPasswordForm = true;
-                });
-        } else {
-            $scope.passwordsMatch = false;
-            $scope.passwordError = 'Passwords do not match, Try Again';
-        }
+                        .catch(function() {
+                            Toast.setToast(TOAST_CONSTANTS.ERROR, API_CONSTANTS.DEFAULT_ERROR_MESSAGE);
+                            $scope.showPasswordForm = true;
+                        });
+                } else {
+                    $scope.passwordError = 'Invalid Current Password';
+                }
+            })
+            .catch(function() {
+                Toast.setToast(TOAST_CONSTANTS.ERROR, API_CONSTANTS.DEFAULT_ERROR_MESSAGE);
+                $scope.showPasswordForm = true;
+            });
     };
 }
