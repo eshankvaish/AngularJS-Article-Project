@@ -26,6 +26,7 @@ export default function signupController($scope, Auth) {
             value: '',
         },
     };
+    $scope.showConfirmPassword = true;
     // For heading
     $scope.heading = 'Sign Up';
 
