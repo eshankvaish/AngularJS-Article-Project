@@ -13,9 +13,18 @@
                 data-ui-sref="{{navItem}}"
                 class="nav__list--link"
                 data-ng-class="isActiveLink(navItem) ? 'link-active' : ''"
-                data-ng-click="handleToggle()"
+                data-ng-click="handleToggle('close')"
             >
                 {{navItem}}
+            </a>
+        </li>
+        <li class="nav__list--item" data-ng-if="isLoggedIn">
+            <a
+                href="javascript:void(0)"
+                class="nav__list--link"
+                data-ng-click="handleLogout()"
+            >
+                Logout
             </a>
         </li>
     </ul>
