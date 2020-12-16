@@ -1,0 +1,59 @@
+<section class="justify-container" data-ng-submit="handleSubmit()">
+    <h1 class="heading">Create Article</h1>
+    <form class="article-form" name="articleForm">
+        <div class="input-field">
+            <label for="title">Title</label>
+            <input
+                type="text"
+                aria-label="title field"
+                name="title"
+                placeholder="Enter Article Title"
+                data-ng-required="true"
+                data-ng-model="article.title"
+            />
+            <div
+                class="text-right color-red"
+                data-ng-if="articleForm.title.$touched && articleForm.title.$invalid"
+            >
+                Please enter valid value!
+            </div>
+        </div>
+        <div class="input-field">
+            <label for="desc">Description</label>
+            <textarea
+                name="desc"
+                id="desc"
+                placeholder="Enter Description"
+                data-ng-model="article.description"
+                data-ng-required="true"
+                aria-label="description"
+            >
+            </textarea>
+            <div
+                class="text-right color-red"
+                data-ng-if="articleForm.desc.$touched && articleForm.desc.$invalid"
+            >
+                Please enter valid value!
+            </div>
+        </div>
+        <div class="input-field">
+            <label for="tags">Tags</label>
+            <input
+                type="text"
+                aria-label="tag list"
+                name="tags"
+                placeholder="Enter Tags (Separated by Comma)"
+                data-ng-model="article.tags"
+            />
+            <div
+                class="text-right color-red"
+                data-ng-if="articleForm.tags.$touched && articleForm.tags.$invalid"
+            >
+                Please enter valid value!
+            </div>
+        </div>
+        <div class="text-right">
+            <button type="Submit" data-ng-disabled="articleForm.$invalid">Post</button>
+        </div>
+    </form>
+</section>

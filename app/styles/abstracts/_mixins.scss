@@ -1,0 +1,49 @@
+@mixin set-line-height($line-height: 0) {
+    line-height: calc(1em + #{$line-height});
+}
+
+@mixin center-container($max-width) {
+    margin: auto;
+    max-width: $max-width;
+}
+
+@mixin flexbox($direction: row, $justify: flex-start, $align: flex-start, $wrap: wrap) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    @if $direction == column {
+        flex-direction: column;
+    }
+    @if $wrap == wrap {
+        flex-wrap: wrap;
+    }
+}
+//Mixin for tablet related media queries
+@mixin bp-tablet {
+    @media screen and (min-width: $tablet-screen-width) {
+        @content;
+    }
+}
+
+//Mixin for desktop related media queries
+@mixin bp-desktop {
+    @media screen and (min-width: $desktop-screen-width) { 
+        @content;
+    }
+}
+
+@mixin normal-font($size: inherit, $color: inherit, $line-height: 1) {
+    font-weight: 400;
+    font-size: $size;
+    color: $color;
+    line-height: $line-height;
+    text-decoration: none;
+}
+
+@mixin bold-font($size: inherit, $color: inherit, $line-height: 1) {
+    font-weight: 700;
+    font-size: $size;
+    color: $color;
+    line-height: $line-height;
+    text-decoration: none;
+}

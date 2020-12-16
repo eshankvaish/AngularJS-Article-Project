@@ -1,0 +1,52 @@
+<section class="justify-container">
+    <div>
+        <!-- Search Field -->
+        <label for="search">Search Articles</label>
+        <input
+            type="search"
+            name="searchField"
+            id="search"
+            placeholder="Search for title, author, .."
+            data-ng-model="searchValue"
+            data-ng-change="handleSearch()"
+        >
+    </div>
+    <div class="article-container">
+        <h2 class="form-error" data-ng-if="!articles.length">No matching articles found!</h2>
+        <h2 class="home-heading" data-ng-if="currentTag">
+            Showing Articles with <span class="home-heading__tag">{{currentTag}}</span> tag
+        </h2>
+        <!--Page List only when search is InActive-->
+        <ul data-ng-if="!searchValue">
+            <li
+                class="page-list"
+                data-ng-repeat="pageNo in range(1,totalPages)"
+                data-ng-class="isActivePage(pageNo) ? 'active-page' : ''"
+            >
+                <a href="" data-ng-click="handleClick(pageNo)">
+                    {{pageNo}}
+                </a>
+            </li>
+        </ul>
+        <!--Article List-->
+        <div class="article-list" data-ng-repeat="article in articles | filter:searchValue">
+            <h3>
+                <a
+                    class="article-list__title"
+                    data-ui-sref="ArticleDetail({articleId: article.id})"
+                >
+                    {{article.title}}
+                </a>
+            </h3>
+            <div class="article-list__author">
+                By {{article.author}}
+            </div>
+            <p class="article-list__description">{{article.description.slice(0,400)}}</p>
+            <ul data-ng-if="article.tags">
+                <li class="article-list__tags" data-ng-repeat="tag in article.tags track by $index">
+                    <a data-ui-sref="Home({tag: tag})">{{tag}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>

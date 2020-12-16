@@ -1,0 +1,31 @@
+<nav class="nav center-container">
+    <div class="nav__icons">
+        <div class="nav__icons--back" data-ng-click="handleBack()">
+            <i class="icon icon-keyboard_backspace"></i>
+        </div>
+        <div class="nav__icons--toggle" data-ng-click="handleToggle()">
+            <i class="icon" data-ng-class="toggleActive ? 'icon-close' : 'icon-menu'"></i>
+        </div>
+    </div>
+    <ul class="nav__list" data-ng-class="toggleActive ? 'nav__list--active' : ''">
+        <li class="nav__list--item" data-ng-repeat="navItem in navItems">
+            <a
+                data-ui-sref="{{navItem}}"
+                class="nav__list--link"
+                data-ng-class="isActiveLink(navItem) ? 'link-active' : ''"
+                data-ng-click="handleToggle('close')"
+            >
+                {{navItem}}
+            </a>
+        </li>
+        <li class="nav__list--item" data-ng-if="isLoggedIn">
+            <a
+                href="javascript:void(0)"
+                class="nav__list--link"
+                data-ng-click="handleLogout()"
+            >
+                Logout
+            </a>
+        </li>
+    </ul>
+</nav>

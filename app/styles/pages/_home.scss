@@ -1,0 +1,76 @@
+/*Media Queries for Tablets*/
+.center-container {
+    padding: 0 20px;
+    
+    @include bp-tablet {
+        @include center-container($container-width-tablet);
+        padding: 0;
+    }
+    @include bp-desktop {
+        @include center-container($container-width-desktop); 
+    }
+}
+main {
+    margin-top: 70px;
+}
+label {
+    @include normal-font(1.8rem, $light-primary-color);
+    padding: 15px 0;
+}
+input {
+    //Styling for text and password input fields
+    @include normal-font(1.4rem);
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid $primary-text-color;
+    border-radius: 4px;
+    outline: none;
+    width: 100%;
+
+    &:focus {
+        border-color: $dark-primary-color;
+    }
+}
+textarea {
+    @extend input;
+    resize: vertical;
+    min-height: 200px;
+}
+.ng-touched.ng-invalid {
+    border-color: $error-color;
+}
+button {
+    @include bold-font(1.4rem, $icon-color);
+    background-color: $light-primary-color;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $dark-primary-color;
+    }
+    &[disabled] {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+}
+.justify-container {
+    @extend .center-container;
+    @include flexbox(column, flex-start, center);
+    padding-top: 30px;
+}
+.heading {
+    @include bold-font(4rem, $dark-primary-color);
+    margin-bottom: 20px;
+
+    @include bp-tablet {
+        @include bold-font(5rem, $dark-primary-color);
+    }
+}
+img {
+    max-height: 100%;
+    max-width: 100%;
+}

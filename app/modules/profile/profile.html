@@ -1,0 +1,71 @@
+<!--User Profile Section-->
+<section class="justify-container profile" data-ng-if="!showPasswordForm">
+    <h1 class="heading">{{user.username}}'s Profile</h1>
+    <div class="profile__avatar">
+        <img
+            src="app/assets/images/avatar.jpg"
+            alt="User Profile Pic"
+        />
+    </div>
+    <a class="profile__email" data-ng-href="mailto:{{user.email}}">
+        {{user.email}}
+    </a>
+    <div>
+        <button
+            type="submit"
+            data-ng-click="handleClick()"
+        >
+            Change Password
+        </button>
+    </div>
+</section>
+<!--Change Password Form-->
+<section class="justify-container profile" data-ng-if="showPasswordForm">
+    <h1 class="heading">Change Password</h1>
+    <form name="changePasswordForm" data-ng-submit="handleSubmit()">
+        <div class="form-error" data-ng-if="passwordError">
+            {{passwordError}}
+        </div>
+        <div class="input-field" data-ng-repeat="inputField in inputFields">
+            <label for="{{inputField.id}}">{{inputField.label}}</label>
+            <input
+                type="{{inputField.type}}"
+                aria-label="{{inputField.label}}"
+                name="{{inputField.name}}"
+                placeholder="{{inputField.placeholder}}"
+                data-ng-required="true"
+                data-ng-model="inputField.value"
+            />
+            <div
+                class="text-right color-red"
+                data-ng-if="changePasswordForm[inputField.name].$touched && changePasswordForm[inputField.name].$invalid"
+            >
+                Please enter valid value!
+            </div>
+        </div>
+        <!-- Confirm Password Field with Match Password Directive -->
+        <div class="input-field">
+            <label for="confirm-password">Confirm Password</label>
+            <input
+                type="password"
+                aria-label="Confirm Password"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                data-ng-required="true"
+                data-ng-model="confirmPassword"
+                passwords-match
+                match-target="inputFields.newPassword.value"
+            />
+            <div
+                class="text-right color-red"
+                data-ng-if="changePasswordForm.confirmPassword.$touched && changePasswordForm.confirmPassword.$error.match"
+            >
+                Passwords don't match!
+            </div>
+        </div>
+        <div class="form-buttons">
+            <button type="reset" data-ng-click="handleClick()">Cancel</button>
+            <button type="Submit" data-ng-disabled="changePasswordForm.$invalid">Change</button>
+        </div>
+    </form>
+</section>

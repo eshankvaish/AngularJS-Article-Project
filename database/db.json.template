@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "username": "admin",
+      "email": "admin@gmail.com",
+      "password": "123456",
+      "id": 1
+    },
+    {
+      "username": "adminUser",
+      "email": "adminUser@gmail.com",
+      "password": "123456",
+      "id": 2
+    },
+    {
+      "username": "testuser",
+      "email": "testuser@gmail.com",
+      "password": "123456",
+      "id": 3
+    }
+  ],
+  "articles": [
+    {
+      "title": "Hello World",
+      "description": "Hello World",
+      "tags": [
+        "first",
+        "article",
+        "hello"
+      ],
+      "author": "admin",
+      "id": 1
+    },
+    {
+      "title": "Test Article",
+      "description": "Test Article",
+      "tags": [
+        "Test"
+      ],
+      "author": "adminUser",
+      "id": 2
+    }
+  ]
+}

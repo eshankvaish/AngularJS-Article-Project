@@ -1,0 +1,89 @@
+header {
+    background-color: $primary-color;
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
+    top: 0;
+}
+
+.nav {
+    @include flexbox(row, space-between, center);
+    @include normal-font(1.6rem, $icon-color);
+    min-height: 70px;
+    // Back icon and Menu Icon
+    &__icons {
+        @include flexbox(row, space-between, center);
+        @include normal-font(5rem);
+        flex: 100%;
+        min-height: 70px;
+        cursor: pointer;
+    
+        @include bp-tablet {
+            padding: 0;
+        }
+        @include bp-desktop {
+            flex: auto;
+        }
+
+        &--toggle {
+            @include bp-desktop {
+                display: none;
+            }
+        }
+        &--back {
+            &:hover {
+                color: $secondary-text-color;
+            }
+        }
+    }
+    // Nav List
+    &__list {
+        width: 100%;
+        display: none;
+
+        @include bp-desktop {
+            @include flexbox;
+            width: auto;
+        }
+        
+        &--item {
+            width: 100%;
+            border-bottom: 1px solid;
+            padding: 15px 10px;
+    
+            @include bp-desktop {
+                width: auto;
+                border: none;
+                padding: 0 20px;
+            }    
+            // For last element
+            &:last-child {
+                border: none;
+            }
+        }
+        &--link {
+            display: inline-block;
+            font-weight: bold;
+            
+            &:hover {
+                color: $secondary-text-color;
+            }
+        }
+        // when the list is open, i.e. toggleActive
+        &--active {
+            display: block;
+
+            @include bp-desktop {
+                display: flex;
+            }
+        }
+    }
+}
+// Current Active Link
+.link-active {
+    color: $primary-text-color;
+
+    &:hover {
+        color: $primary-text-color;
+    }
+}

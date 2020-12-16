@@ -1,0 +1,46 @@
+<section class="justify-container">
+    <!-- This view can be reused for signup and login -->
+    <h1 class="heading">{{ heading }}</h1>
+    <form name="signupForm" data-ng-submit="handleSubmit()">
+        <div class="input-field" data-ng-repeat="inputField in inputFields">
+            <label for="{{inputField.id}}">{{inputField.label}}</label>
+            <input
+                type="{{inputField.type}}"
+                aria-label="{{inputField.label}}"
+                name="{{inputField.name}}"
+                placeholder="{{inputField.placeholder}}"
+                data-ng-required="true"
+                data-ng-model="inputField.value"
+            />
+            <div
+                class="text-right color-red"
+                data-ng-if="signupForm[inputField.name].$touched && signupForm[inputField.name].$invalid"
+            >
+                Please enter valid value!
+            </div>
+        </div>
+        <!-- Confirm Password Field only on Signup Page -->
+        <div class="input-field" data-ng-if="showConfirmPassword">
+            <label for="confirm-password">Confirm Password</label>
+            <input
+                type="password"
+                aria-label="Confirm Password"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                data-ng-required="true"
+                data-ng-model="confirmPassword"
+                passwords-match
+                match-target="inputFields.password.value"
+            />
+            <div
+                class="text-right color-red"
+                data-ng-if="signupForm.confirmPassword.$touched && signupForm.confirmPassword.$error.match"
+            >
+                Passwords don't match!
+            </div>
+        </div>
+        <div class="text-right">
+            <button type="Submit" data-ng-disabled="signupForm.$invalid">Submit</button>
+        </div>
+    </form>
+</section>

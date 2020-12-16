@@ -1,0 +1,60 @@
+.article-container {
+    @include flexbox(column, flex-start, center);
+    width: 100%;
+
+    @include bp-tablet {
+        padding: 20px;
+    }
+}
+.article-list {
+    border: 1px solid $light-primary-color;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 20px 20px 10px;
+    background-color: $background-color;
+    width: 100%;
+
+    &__title {
+        @include bold-font(1.8rem, $primary-color);
+        margin-bottom: 10px;
+    }
+    &__author {
+        @include normal-font(1.2rem, $secondary-text-color);
+    }
+    &__description {
+        @include normal-font(1.2rem, inherit, 2rem);
+        margin: 10px 0;
+    }
+    &__tags {
+        @include normal-font(1.2rem, $icon-color);
+        display: inline-block;
+        padding: 5px;
+        margin: 5px;
+        background-color: $dark-background-color;
+        border-radius: 5px;
+
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+}
+.page-list {
+    @include normal-font(1.4rem);
+    display: inline-block;
+    padding: 8px;
+    margin: 8px;
+    background-color: $background-color;
+}
+.active-page {
+    background-color: $dark-background-color;
+}
+.home-heading {
+    @include bold-font(2.4rem, $dark-primary-color);
+    margin-bottom: 15px;
+
+    &__tag {
+        padding: 8px;
+        background: $background-color;
+        border-radius: 8px;
+    }
+}
